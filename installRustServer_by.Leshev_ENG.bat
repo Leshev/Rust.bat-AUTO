@@ -154,6 +154,23 @@ echo ==== The installation of Oxide was successful ====
 timeout /t 2 >nul
 exit
 
+:carbon
+echo ==== Download Carbon ====
+powershell -Command "Invoke-WebRequest https://github.com/CarbonCommunity/Carbon.Core/releases/download/production_build/Carbon.Windows.Release.zip -OutFile rustds\Carbon.Windows.Release.zip"
+echo ==== Conplite ==== 
+timeout /t 1 >nul
+cls
+echo ====Install Carbon====
+powershell -command "Expand-Archive -Force '%~dp0rustds\Carbon.Windows.Release.zip' '%~dp0rustds\'"
+timeout /t 1 >nul
+echo ==== Deleting unnecessary files ====
+del rustds\Carbon.Windows.Release.zip
+timeout /t 1 >nul
+cls
+echo ==== The installation of Carbon was successful ====
+timeout /t 2 >nul
+exit
+
 :rest
 echo ==== Starting file verification ====
 set /p warning=All server files will be deleted. Do you agree? "y"-yes, "n"-no :
