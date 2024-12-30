@@ -156,6 +156,23 @@ echo ==== Установка Oxide прошла успешно ====
 timeout /t 2 >nul
 exit
 
+:carbon
+echo ==== Скачиваю Carbon ====
+powershell -Command "Invoke-WebRequest https://github.com/CarbonCommunity/Carbon.Core/releases/download/production_build/Carbon.Windows.Release.zip -OutFile rustds\Carbon.Windows.Release.zip"
+echo ==== Скачивание прошло успешно 
+timeout /t 1 >nul
+cls
+echo ====Запускаю установку Carbon====
+powershell -command "Expand-Archive -Force '%~dp0rustds\Carbon.Windows.Release.zip' '%~dp0rustds\'"
+timeout /t 1 >nul
+echo ==== Удаляю ненужные файлы ====
+del rustds\Carbon.Windows.Release.zip
+timeout /t 1 >nul
+cls
+echo ==== Установка Carbon прошла успешно ====
+timeout /t 2 >nul
+exit
+
 :rest
 echo ==== Запуск проверки файлов ====
 set /p warning=Все файлы сервера будут удаленны. Согласны? "y"-да  "n"-нет :
